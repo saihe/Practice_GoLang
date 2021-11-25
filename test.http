@@ -1,0 +1,13 @@
+# @name get employee
+GET {{baseurl}}/employee/1 HTTP/1.1
+Content-Type: Application/json
+
+###
+POST {{baseurl}}/employee HTTP/1.1
+Content-Type: Application/json
+
+{
+  "id": 1
+  , "name": "Updated Name"
+  , "department_id": "1"
+}
