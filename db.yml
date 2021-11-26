@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: practice
+      POSTGRES_PASSWORD: practice
+      PGUSR: practice
+      PGPASSWORD: practice
+      POSTGRES_DB: practice
+      TZ: "Asia/Tokyo"
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 81:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: saihe.kyon@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: practice
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:
+  pgadmin:
