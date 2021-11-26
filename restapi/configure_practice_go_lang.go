@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 
 	"practiceGoLang/restapi/operations"
+	"practiceGoLang/restapi/operations/employee"
 )
 
 //go:generate swagger generate server --target ../../Practice_GoLang --name PracticeGoLang --spec ../swagger.yml --principal interface{}
@@ -37,6 +38,7 @@ func configureAPI(api *operations.PracticeGoLangAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
+	api.GetEmployeeIDHandler = operations.GetEmployeeIDHandlerFunc(employee.EmployeeID)
 	if api.GetEmployeeIDHandler == nil {
 		api.GetEmployeeIDHandler = operations.GetEmployeeIDHandlerFunc(func(params operations.GetEmployeeIDParams) middleware.Responder {
 			return middleware.NotImplemented("operation operations.GetEmployeeID has not yet been implemented")
